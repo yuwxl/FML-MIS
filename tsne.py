@@ -8,8 +8,7 @@ import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 from sklearn import datasets
 from sklearn.manifold import TSNE
-def get_data(): #Input_path为你自己原始数据存储路径，我的路径就是上面的'./Images'
-    # Image_names=os.listdir(Input_path) #获取目录下所有图片名称列表
+def get_data():
     client_num = 4
     client_name = ['Domain1', 'Domain2', 'Domain3', 'Domain4']
     client_data_list = []
@@ -38,11 +37,6 @@ def get_data(): #Input_path为你自己原始数据存储路径，我的路径�
 
     # print(label)
 
-    #为前500个分配标签1，后500分配0
-    # for k in range(5):
-    #     label[k]=1
-
-    #读取并存储图片数据，原图为rgb三通道，而且大小不一，先灰度化，再resize成200x200固定大小
     index = 0
     for i in range(4):
          for image_path in client_data_list[i]:
@@ -60,10 +54,6 @@ def get_data(): #Input_path为你自己原始数据存储路径，我的路径�
             # print(len(data))
     print(index)
     return data, label, n_samples, n_features
-
-# 下面的两个函数，
-# 一个定义了二维数据，一个定义了3维数据的可视化
-# 不作详解，也无需再修改感兴趣可以了解matplotlib的常见用法
 
 def plot_embedding_2D(data, label, title):
     # print(len(data))
