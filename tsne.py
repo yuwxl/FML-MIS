@@ -6,10 +6,8 @@ from time import time
 import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
-from sklearn import datasets #手写数据集要用到
+from sklearn import datasets
 from sklearn.manifold import TSNE
-#该函数是关键，需要根据自己的数据加以修改，将图片存到一个np.array里面，并且制作标签
-#因为是两类数据，所以我分别用0,1来表示
 def get_data(): #Input_path为你自己原始数据存储路径，我的路径就是上面的'./Images'
     # Image_names=os.listdir(Input_path) #获取目录下所有图片名称列表
     client_num = 4
@@ -89,7 +87,6 @@ def plot_embedding_2D(data, label, title):
     plt.xticks([])
     plt.yticks([])
     plt.rcParams['font.sans-serif'] = ['KaiTi']  # 指定默认字体
-    plt.savefig('D:/Desktop/pic/tsne_c.eps')
     # plt.xlabel("无插值")
     # plt.xlabel("λ ∈ [0.0,1.0]")
     # plt.xlabel("w/o CFSI")
@@ -120,14 +117,13 @@ def get_data2():
 
 #主函数
 def main():
-    data, label, n_samples, n_features = get_data() #根据自己的路径合理更改
-    print('Begining......') #时间会较长，所有处理完毕后给出finished提示
+    data, label, n_samples, n_features = get_data()
+    print('Begining......')
     tsne_2D = TSNE(n_components=2, init='pca', random_state=501) #调用TSNE
     result_2D = tsne_2D.fit_transform(data)
     # tsne_3D = TSNE(n_components=3, init='pca', random_state=0)
     # result_3D = tsne_3D.fit_transform(data)
     print('Finished......')
-    #调用上面的两个函数进行可视化
     fig1 = plot_embedding_2D(result_2D, label,'t-SNE')
     # # print(fig1)
     # # plt.show(fig1)
@@ -137,12 +133,5 @@ def main():
     # fig2.show()
     # plt.show()
 if __name__ == '__main__':
-    # 用cm.Set1返回不同颜色
-    # for i in range(5, 8):
-    #     color = plt.cm.Set1(i)
-    #     print(type(i))
-    #     print('color', i, color)
-    #     plt.scatter(i, i, c=color, marker='^', s=200)
-    #
-    # plt.show()
+
     main()
